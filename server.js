@@ -2,7 +2,22 @@ var express = require('express');
 var winston = require('winston');
 var data = require('./data');
 var _ = require('lodash');
+
 var app = express();
+
+var swig  = require('swig');
+app.set('views', __dirname + '/public/views');
+app.set('view engine', 'html');
+
+app.engine('html', swig.renderFile);
+app.set('view cache', false);
+swig.setDefaults({ cache: false });
+app.use(express.static(__dirname + '/public'));;
+
+app.get('/', (req, res) => {
+      res.render('index');
+
+ });
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -17,7 +32,7 @@ app.use((err, req, res, next) => {
 
 app.get('/api/projects', (req, res) => {
   res.json(_.map(data, (project) => {
-    return { id: project.id, name: project.name, image: project.image };
+    res.render('index')
   }));
 });
 

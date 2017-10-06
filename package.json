@@ -6,11 +6,14 @@
   "author": "Alexis Ablain <alexis.ablain@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node server.js"
+    "start": "nodemon server.js"
   },
   "dependencies": {
     "express": "4.14.0",
     "lodash": "4.15.0",
     "winston": "2.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
   }
 }
